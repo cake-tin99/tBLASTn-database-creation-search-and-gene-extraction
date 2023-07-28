@@ -44,8 +44,39 @@ done <capA_contig
 You can edit this accordingly with the genome informatin you need. It will be useful to match the contig name to the accession name and the species. 
 From here you can set coverage and percentage identity to the refernce cut-offs. 
 
-**Pulling a gene from a genome file***
-tblastn provides the contig name and the start and end coordinate that the hit matches too in the genome, these can be substituted into fastasubgrep 
+**Pulling a gene from a genome file**
+tblastn provides the contig name and the start and end coordinate that the hit matches too in the genome, these can be substituted into fastasubgrep command or script
+Command - 
+```
+	fasta_subgrep.pl -f $i -s $start -e $end --id $contig_name > ${new_fname}_muts.fasta
+```
+Script -
+```
+#!/bin/bash
+for i in *.fna;
+do
+	# for every $i, find in file. cut column based on delim
+	contig_name=$(grep $i muts_fastasubgrep.csv | cut -f4 -d'	')
+	echo "loop continue"
+	echo $contig_name
+	# if found, continue.
+	if [ -n "$contig_name" ]; then
+		echo "found:"
+		start=$(grep $i muts_fastasubgrep.csv | cut -f5 -d'	')
+		end=$(grep $i muts_fastasubgrep.csv | cut -f6 -d'	')
+		
+		# find extension at end of string. remove it and create new var for name
+		extension=".fna"
+		new_fname=${i/%$extension}
+		
+		echo $contig_name
+		echo $start
+		echo $end
+		fasta_subgrep.pl -f $i -s $start -e $end --id $contig_name > ${new_fname}_muts_O2.fasta
+	fi
+done
 
+
+```
 
 

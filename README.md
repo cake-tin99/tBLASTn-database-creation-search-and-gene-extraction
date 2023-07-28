@@ -45,7 +45,7 @@ You can edit this accordingly with the genome informatin you need. It will be us
 From here you can set coverage and percentage identity to the refernce cut-offs. 
 
 **Pulling a gene from a genome file***
-
+tblastn provides the contig name and the start and end coordinate that the hit matches too in the genome, these can be substituted into fastasubgrep 
 
 
 

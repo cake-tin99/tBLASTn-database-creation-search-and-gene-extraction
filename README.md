@@ -40,3 +40,6 @@ done <capA_contig
 =MATCH(H1,$F$1:$f$1000,0)
 =INDEX($B$1:$B$1000,1)
 ```
+
+You can edit this accordingly with the genome informatin you need. It will be useful to match the contig name to the accession name and the species. 
+From here you can set coverage and percentage identity to the refernce cut-offs. 
